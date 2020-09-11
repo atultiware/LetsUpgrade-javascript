@@ -3,26 +3,16 @@
 <body>
 
 <script>
-function findarray()
-{
-    var arr = [Atul, Kuldip, Sunil, Akshay];
+let fruits = ['akshay', 'Vivek','Atul']
 
-    for (let i = 0; i < arr.length; i++)
-    {
-        const element = arr[i];
-        for (let j = 0; j < element.length; j++)
-        {
-            var chars = element.charAt(j).toLowerCase();
 
-            if (chars === 'a')
-            {
-                console.log(element);
-            }
-
-        }
-
-    }
+function filterItems(arr, query) {
+  return arr.filter(function(el) {
+      return el.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  })
 }
+
+console.log(filterItems(fruits, 'a'))
 
 </script>
 
