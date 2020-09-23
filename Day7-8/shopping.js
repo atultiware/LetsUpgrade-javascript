@@ -250,25 +250,27 @@ function removeFromCart(id)
   displayProducts(cart, "cart");
 }
 
-let minPriceFilteredProducts = [];
-let maxPriceFilteredProducts = [];
+let PriceFilteredProducts = [];
+let minValue = 0;
+let maxValue = 0;
+
+function filterProductsByPrice(minValue, maxValue)
+{
+  PriceFilteredProducts = products.filter(function (product, index)
+  {
+    return (minValue ? minValue : product.price) <= product.price && (maxValue ? maxValue : product.price) >= product.price;
+  });
+  displayProducts(PriceFilteredProducts);
+}
 
 function minPrice(searchPrice)
 {
-  // products = searchPrice ? products : (maxPriceFilteredProducts.length ? maxPriceFilteredProducts : products);
-  minPriceFilteredProducts = products.filter(function (product, index)
-  {
-    return searchPrice <= product.price;
-  });
-  displayProducts(minPriceFilteredProducts);
+  minValue = searchPrice;
+  filterProductsByPrice(minValue, maxValue);
 }
 
 function maxPrice(searchPrice)
 {
-  // products = searchPrice ? products : (minPriceFilteredProducts.length ? minPriceFilteredProducts : products);
-  maxPriceFilteredProducts = products.filter(function (product, index)
-  {
-    return searchPrice >= product.price;
-  });
-  displayProducts(maxPriceFilteredProducts);
+  maxValue = searchPrice;
+  filterProductsByPrice(minValue, maxValue);
 }
